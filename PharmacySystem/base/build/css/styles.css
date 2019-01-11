@@ -1,0 +1,57 @@
+body {
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #ebebeb;
+}
+
+#sekcija1 {
+    text-align: right;
+    padding: 40px;
+    background: url(~/base/build/images/sebastian-pociecha-631796-unsplash.jpg) no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+    #sekcija1 {
+        padding: 20px;
+    }
+}
+
+#sekcija1 .jumbotron {
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+@media (min-width: 300px) {
+    #sekcija1 .jumbotron {
+        padding: 20px;
+    }
+}
+
+.sekcija-2 {
+    text-align: center;
+    padding: 50px 0 60px;
+    background-color: #6F6F6F;
+}
+
+    .sekcija-2 h1 {
+        font-weight: normal;
+        margin-bottom: 30px;
+    }
+
+#informacije p {
+    max-width: 960px;
+    font-size: 18px;
+    margin: 0 auto;
+}
+
+.col-md-4 {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #EF7F2D;
+}

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<PharmacySystem.Models.MedicineFactory>
+
+@{
+    ViewBag.Title = "Medicine Factory";
+}
+
+<br />
+<h2>Medicine Factory</h2>
+<p>
+    @Html.ActionLink("Create New", "Create",null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineFactoryName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MedicineFactoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MedicineFactoryID }, htmlAttributes: new { @class = "btn btn-primary btn-large" }) 
+            @Html.ActionLink("Details", "Details", new { id=item.MedicineFactoryID }, htmlAttributes: new { @class = "btn btn-info btn-large" }) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.MedicineFactoryID }, htmlAttributes: new { @class = "btn btn-warning btn-large" })
+        </td>
+    </tr>
+}
+
+</table>

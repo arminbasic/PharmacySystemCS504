@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pharmacy system</title>
+    <!-- Bootstrap -->
+    <link href="@Url.Content("~/base/vendors/bootstrap/dist/css/bootstrap.min.css")" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="@Url.Content("~/base/vendors/font-awesome/css/font-awesome.min.css")" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="@Url.Content("~/base/vendors/nprogress/nprogress.css")" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="@Url.Content("~/base/vendors/bootstrap-daterangepicker/daterangepicker.css")" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="@Url.Content("~/base/vendors/iCheck/skins/flat/green.css")" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="@Url.Content("~/base/build/css/custom.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/base/build/css/select2.min.css")" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="@Url.Content("~/base/vendors/jquery/dist/jquery.min.js")"></script>
+    <!-- Bootstrap -->
+    <script src="@Url.Content("~/base/vendors/bootstrap/dist/js/bootstrap.min.js")"></script>
+</head>
+<body class="nav-md" style="background-color:crimson">
+    @*Including all modals in one partial view*@
+    @Html.Partial("_Modals")
+
+    <div class="container body">
+        <div class="main_container">
+
+            @Html.Partial("_LoginPart")
+
+            @Html.Partial("_SideNav")
+
+            <!-- top navigation -->
+
+            @Html.Partial("_TopNav")
+
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            @Html.Partial("_Footer")
+            <!-- /footer content -->
+        </div>
+    </div>
+    <!-- FastClick -->
+    <script src="@Url.Content("~/base/vendors/fastclick/lib/fastclick.js")"></script>
+
+    <!-- bootstrap-daterangepicker -->
+    <script src="@Url.Content("~/base/vendors/moment/min/moment.min.js")"></script>
+    <script src="@Url.Content("~/base/vendors/bootstrap-daterangepicker/daterangepicker.js")"></script>
+
+    <!-- NProgress -->
+    <script src="@Url.Content("~/base/vendors/nprogress/nprogress.js")"></script>
+    <!-- iCheck -->
+    <script src="@Url.Content("~/base/vendors/iCheck/icheck.min.js")"></script>
+    <!-- jquery.inputmask -->
+    <script src="@Url.Content("~/base/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js")"></script>
+    <!-- Custom Theme Scripts -->
+
+    <script src="@Url.Content("~/base/build/js/select2.full.min.js")"></script>
+    <script src="@Url.Content("~/base/build/js/custom.min.js")"></script>
+
+    <script type="text/javascript">
+
+        $(window).on("beforeunload", function () {
+            showLoader();
+            return;
+        });
+
+        $(document).ready(function () {
+            $('#information').modal('show');
+
+            $('#close1').click(function () {
+                $('#information').modal('hide');
+
+                return false;
+            });
+
+        });
+
+        $(document).ready(function () {
+            $('#update-success').modal('show');
+        });
+
+        $(document).ready(function () {
+            $('#update-failed').modal('show');
+        });
+
+        jQuery("#SourceID1").select2();
+        jQuery("#SourceID2").select2();
+        jQuery("#ProgramID1").select2();
+        jQuery("#FunctionID1").select2();
+        jQuery("#EcoID1").select2();
+        jQuery("#EcoID2").select2();
+        jQuery("#EcoID3").select2();
+        jQuery("#ProjectID1").select2();
+        jQuery("#TransferBeneficiaryID1").select2();
+        jQuery("#RevenueInstitutionID1").select2();
+        jQuery("#ProgramClassID").select2();
+        jQuery("#BudgetUserID1").select2();
+        jQuery("#SubAnalytictID1").select2();
+        jQuery("#SubAnalytictIDP").select2();
+        jQuery("#K3").select2();
+        jQuery("#K4").select2();
+        jQuery("#numOfEmp").hide();
+
+        jQuery("#K3").change(function () {
+
+            if (jQuery("#K3").val() != '00000000-0000-0000-0000-000000000000') {
+                jQuery("#K4").prop('disabled', true);
+            }
+            else {
+                jQuery("#K4").prop('disabled', false);
+            }
+        });
+        jQuery("#K4").change(function () {
+            if (jQuery("#K4").val() != '00000000-0000-0000-0000-000000000000') {
+                jQuery("#K3").prop('disabled', true);
+            }
+            else {
+                jQuery("#K3").prop('disabled', false);
+            }
+        });
+
+        ilf (jQuery("#K4").va() != '00000000-0000-0000-0000-000000000000') {
+            jQuery("#K3").prop('disabled', true);
+        }
+        if (jQuery("#K3").val() != '00000000-0000-0000-0000-000000000000') {
+            jQuery("#K4").prop('disabled', true);
+        }
+        function FillSubAnalytics() {
+            var ecoId = jQuery('#EcoID3').val();
+            //alert(ecoId);
+            var ecoVal = jQuery('#EcoID3 :selected').text();
+            //alert(ecoVal.substring(0, 6));
+            if (ecoVal.substring(0, 6) == "611000"
+                 || ecoVal.substring(0, 6) == "611100"
+                 || ecoVal.substring(0, 6) == "611110"
+                 || ecoVal.substring(0, 6) == "611130"
+                 || ecoVal.substring(0, 6) == "611200"
+                 || ecoVal.substring(0, 6) == "611200"
+                 || ecoVal.substring(0, 6) == "611211"
+                 || ecoVal.substring(0, 6) == "611214"
+                 || ecoVal.substring(0, 6) == "611216"
+                 || ecoVal.substring(0, 6) == "611221"
+                 || ecoVal.substring(0, 6) == "611224"
+                 || ecoVal.substring(0, 6) == "611225"
+                 || ecoVal.substring(0, 6) == "611226"
+                 || ecoVal.substring(0, 6) == "611227"
+                 || ecoVal.substring(0, 6) == "613100")
+            {
+
+                jQuery("#numOfEmp").show();
+            }
+            else {
+                jQuery("#numOfEmp").hide();
+            }
+            jQuery.ajax({
+                url: '/SubAnalytics/FillSubAnalytics',
+                type: "GET",
+                dataType: "JSON",
+                data: { Eco: ecoId },
+                success: function (subAnalytics) {
+                    jQuery("#SubAnalytictID1").html(""); // clear before appending new list
+                    jQuery("#SubAnalytictID1").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000001').html(''));
+                    jQuery("#SubAnalytictID1").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000000').html('Nov'));
+                    jQuery.each(subAnalytics, function (i, sub) {
+                        jQuery("#SubAnalytictID1").append(
+                            jQuery('<option></option>').val(sub.Id).html(sub.Code));
+                    });
+                }
+            });
+
+
+        }
+
+        function FillSubAnalytics3() {
+            var ecoId = jQuery('#EcoID3').val();
+            //alert(ecoId);
+            var buId = jQuery('#BudgetUserID1 :selected').val();
+            //alert(buId);
+
+            jQuery.ajax({
+                url: '/SubAnalytics/FillSubAnalytics3',
+                type: "GET",
+                dataType: "JSON",
+                data: { Eco: ecoId,bu:buId },
+                success: function (subAnalytics) {
+                    jQuery("#SubAnalytictID1").html(""); // clear before appending new list
+                    jQuery("#SubAnalytictID1").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000001').html(''));
+                    jQuery("#SubAnalytictID1").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000000').html('Nov'));
+                    jQuery.each(subAnalytics, function (i, sub) {
+                        jQuery("#SubAnalytictID1").append(
+                            jQuery('<option></option>').val(sub.Id).html(sub.Code));
+                    });
+                }
+            });
+
+
+        }
+        function FillSubAnalyticsP() {
+            var ecoId = jQuery('#EcoID2').val();
+            jQuery.ajax({
+                url: '/SubAnalytics/FillSubAnalytics',
+                type: "GET",
+                dataType: "JSON",
+                data: { Eco: ecoId },
+                success: function (subAnalytics) {
+                    jQuery("#SubAnalytictIDP").html(""); // clear before appending new list
+                    jQuery("#SubAnalytictIDP").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000001').html(''));
+                    jQuery("#SubAnalytictIDP").append(
+                           jQuery('<option></option>').val('00000000-0000-0000-0000-000000000000').html('Nov'));
+                    jQuery.each(subAnalytics, function (i, sub) {
+                        jQuery("#SubAnalytictIDP").append(
+                            jQuery('<option></option>').val(sub.Id).html(sub.Code));
+                    });
+                }
+            });
+        }
+
+        function FillSourceList() {
+            var buId = jQuery('#BudgetUserID1').val();
+            //alert(buId);
+            jQuery.ajax({
+                url: '/Source/FillSourceList',
+                type: "GET",
+                dataType: "JSON",
+                data: { BU: buId },
+                success: function (source) {
+                    jQuery("#SourceID1").html(""); // clear before appending new list
+                    jQuery.each(source, function (i, sub) {
+                        jQuery("#SourceID1").append(
+                            jQuery('<option></option>').val(sub.Id).html(sub.CodeName));
+
+                    });
+                    jQuery.ajax({
+                        url: '/Function/FillFunctionList',
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { BU: buId },
+                        success: function (fun) {
+                            jQuery("#FunctionID1").html(""); // clear before appending new list
+                            jQuery.each(fun, function (i, f) {
+                                jQuery("#FunctionID1").append(
+                                    jQuery('<option></option>').val(f.Id).html(f.CodeName));
+                            });
+                        }
+                    });
+                    var sourceId = jQuery('#SourceID1').val();
+                    jQuery.ajax({
+                        //url: '@Url.Action("Eco","FillEcoList")',
+                        url: '/Eco/FillEcoList',
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { source: sourceId },
+                        success: function (ecos) {
+                            jQuery("#EcoID3").html(""); // clear before appending new list
+                            jQuery.each(ecos, function (i, ec) {
+                                jQuery("#EcoID3").append(
+                                    jQuery('<option></option>').val(ec.Id).html(ec.CodeName));
+                            });
+                            var ecoId = jQuery('#EcoID3').val();
+
+                        }
+                    });
+                }
+            });
+        }
+        function FillEcoList() {
+            var sourceId = jQuery('#SourceID1').val();
+            alert(sourceId);
+            jQuery.ajax({
+                //url: '@Url.Action("Eco","FillEcoList")',
+                url: '/Eco/FillEcoList',
+                type: "GET",
+                dataType: "JSON",
+                data: { source: sourceId },
+                success: function (ecos) {
+                    jQuery("#EcoID3").html(""); // clear before appending new list
+                    jQuery.each(ecos, function (i, ec) {
+                        jQuery("#EcoID3").append(
+                            jQuery('<option></option>').val(ec.Id).html(ec.CodeName));
+                    });
+                }
+            });
+        }
+        jQuery("#SubAnalyticsName1").hide();
+        jQuery("#SubAnalyticsName2").hide();
+        function NewSubAnalitics() {
+
+            if (jQuery("#SubAnalytictID1").val() == '00000000-0000-0000-0000-000000000000') {
+                jQuery("#SubAnalyticsName1").show();
+            }
+            else {
+                jQuery("#SubAnalyticsName1").hide();
+            }
+        }
+        function NewSubAnalitics1() {
+
+            if (jQuery("#SubAnalytictIDP").val() == '00000000-0000-0000-0000-000000000000') {
+                jQuery("#SubAnalyticsName2").show();
+            }
+            else {
+                jQuery("#SubAnalyticsName2").hide();
+            }
+        }
+
+
+
+
+
+
+    </script>
+
+
+    @RenderSection("scripts", required: false)
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/validation.js")"></script>
+
+</body>
+</html>

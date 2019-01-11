@@ -1,0 +1,56 @@
+﻿
+
+<div class="top_nav" style="background-color:crimson">
+    <div class="nav_menu">
+        <nav>
+            <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars" style="color:crimson"></i></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                @*@if (BudgetCycleHelper.SelectedBudgetUser == null)
+                {
+                    BudgetCycleHelper.SelectedBudgetUser = new Avacom.eBudget.BusinessLogic.Database.Entities.BudgetUser();
+                    BudgetCycleHelper.SelectedBudgetUser.Id = Guid.NewGuid();
+                }*@
+                <li role="presentation" class="dropdown">
+                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="visibility:visible"></a>
+                        <i class="fa fa-envelope-o"></i>
+            </ul>
+
+
+
+
+          
+            @*<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                @* @{Html.RenderAction("TopNavMessages", "Message");}*@
+                @*@{Html.RenderAction("TopNavMessages", "Message", new { UserId = BudgetCycleHelper.SelectedBudgetUser.Id });}*@
+                @*@{Html.RenderAction("~/Views/Message/_TopNavMessages.cshtml", Avacom.eBudget.BusinessLogic.Database.Controllers.Messages.MessageController.Instance.GetUnreadMessagesByBudgetUserId(BudgetCycleHelper.SelectedBudgetUser.Id, LanguageHelper.DataLanguage.LanguageID));}*@
+            @*</ul>**@
+        </nav>
+</div>
+</div>
+
+<script>
+    @*var GetAllUnreadMessages = function (userId) {
+        if (userId) {
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetUnreadMessages", "Message")',
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $('#senderName').text(item.Sender.DefaultName.Name);
+                        $('#senderMessage').text(item.Body);
+                        $('#senderDate').text(item.Created);
+                    });
+                },
+                error: function (response, textStatus, errorThrown) {
+                    alert("error: Doslo je do pogreske!");
+                },
+                failure: function (response) {
+                    alert("failure: Doslo je do pogreske!");
+                }
+            });
+        }
+    }*@
+</script>

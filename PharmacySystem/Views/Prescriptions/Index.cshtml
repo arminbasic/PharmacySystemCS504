@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PharmacySystem.Models.Prescription>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<h2>Prescription</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.medicine.MedicineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.patient.PatientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfPrescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.medicine.MedicineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.patient.PatientName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfPrescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PrescriptionID }, htmlAttributes: new { @class = "btn btn-primary btn-large" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PrescriptionID }, htmlAttributes: new { @class = "btn btn-info btn-large" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.PrescriptionID }, htmlAttributes: new { @class = "btn btn-warning btn-large" })
+        </td>
+    </tr>
+}
+
+</table>

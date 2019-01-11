@@ -1,0 +1,75 @@
+﻿@*Success modal*@
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: #26B99A">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="color: #fff;"><i id="successMessageIcon" class="fa fa-info-circle" style="color: #fff;"></i> <span id="successModalTitle">Potvrda</span></h4>
+            </div>
+
+            <div class="modal-body">
+                <p style="font-size: 20px" id="successModalMessage">Operacija uspješna</p>
+                <p class="debug-url"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check"></i> Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*Error modal*@
+<div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header" style="background-color: #C00">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" style="color: #fff;"><i id="errorMessageIcon" class="" style="color: #fff;"></i> <span id="errorModalTitle">Pogreška</span></h4>
+            </div>
+
+            <div class="modal-body">
+                <p style="font-size: 20px" id="errorModalMessage">Došlo je do pogreške!</p>
+                <p class="debug-url"></p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-remove"></i> Zatvori</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loading" style="display:none;">Loading&#8230;</div> 
+
+<script>
+
+    var showLoader = function()    {
+        $(".loading").show();
+    }
+
+    var hideLoader = function () {
+        $(".loading").hide();
+    }
+
+    var showSuccessModal = function (title, description, icon) {
+        if (icon == null || icon == "")
+            icon = "fa fa-info-circle";
+        $("#successMessageIcon").removeClass().addClass(icon);
+        $("#successModalTitle").text(title);
+        $("#successModalMessage").text(description);
+        $("#successModal").modal("show");
+    }
+
+    var showErrorModal = function (title, description, icon) {
+        if (icon == null || icon == "")
+            icon = "fa fa-warning";
+        $("#errorMessageIcon").removeClass().addClass(icon);
+        $("#errorModalTitle").text(title);
+        $("#errorModalMessage").text(description);
+        $("#errorModal").modal("show");
+    }
+
+</script>

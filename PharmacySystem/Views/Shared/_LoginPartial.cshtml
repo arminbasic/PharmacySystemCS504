@@ -1,0 +1,94 @@
+﻿ @using (Html.BeginForm())
+    
+        @Html.AntiForgeryToken()
+        
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Budžeti
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Budžeti", "Index", "Budget")</li>
+                        <li>@Html.ActionLink("Budžetski ciklusi", "Index", "BudgetCycle")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Šifarnici
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Izvori", "Index", "Source")</li>
+                        <li>@Html.ActionLink("Projekti", "Index", "Project")</li>
+                        <li>@Html.ActionLink("Tipovi projekata", "Index", "ProjectType")</li>
+                        <li>@Html.ActionLink("Programi", "Index", "Program")</li>
+                        <li>@Html.ActionLink("Primaoci transfera", "Index", "TransferBeneficary")</li>
+                        <li>@Html.ActionLink("Prihodne institucije", "Index", "RevenueInstitution")</li>
+                        <li>@Html.ActionLink("Periodi", "Index", "Period")</li>
+                        <li>@Html.ActionLink("Nivoi budžeta", "Index", "BudgetLevel")</li>
+                        <li>@Html.ActionLink("Funkcije", "Index", "Function")</li>
+                        <li>@Html.ActionLink("Valute", "Index", "Currency")</li>
+                        <li>@Html.ActionLink("Budžetski korisnici", "Index", "BudgetUser")</li>
+                        <li>@Html.ActionLink("Mjere učinka", "Index", "MeasureEffect")</li>
+                        <li>@Html.ActionLink("Glavni programi", "Index", "MainProgram")</li>
+                        <li>@Html.ActionLink("Ekonomske klasifikacije", "Index", "Eco")</li>
+                    </ul>
+                </li>
+            </ul>
+      
+        <ul class="nav navbar-nav navbar-right">
+            @*@if (BudgetCycleHelper.LoggedUserBudgetCycle != null)
+                {
+                    <li>
+                        @Html.ActionLink("Ciklus " + BudgetCycleHelper.LoggedUserBudgetCycle.BudgetCycleID, "Index", "Home")
+                    </li>
+                    <li>
+                        @Html.ActionLink("DBK " + BudgetCycleHelper.LoggedUserBudgetCycle.BudgetUserID, "Index", "Home")
+                    </li>
+                }*@
+           
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Kontrolna ploča
+                        <span class="caret"></span>
+                    </a>
+                  
+                </li>
+            
+        </ul>
+        if(LoginHelper.IsDbk && (Avacom.eBudget.BusinessLogic.DataAccess.Enums.RoleType)DashboardHelper.SelectedDashboard.RoleType == Avacom.eBudget.BusinessLogic.DataAccess.Enums.RoleType.DBK)
+        {
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Web sifarnici
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Programi", "MyPrograms", "Program")</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Budzetski korisnik
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("BUW", "Index", "BudgetUserWork")</li>
+                        <li>@Html.ActionLink("Prihodi/Rashodi", "InputOutput", "Program", new { program = new Guid() }, null)</li>
+                        <li>@Html.ActionLink("Obrazloženje korisnika", "Index", "Explanation")</li>
+                        <li>@Html.ActionLink("Obrazloženje programa", "Index", "ExplanationP")</li>
+                    </ul>
+                </li>
+            </ul>
+        }
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+        <li>@Html.ActionLink("Log in", "Login", "Login")</li>
+    </ul>
+}

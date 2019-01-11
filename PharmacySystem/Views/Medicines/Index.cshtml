@@ -1,0 +1,96 @@
+﻿@model IEnumerable<PharmacySystem.Models.Medicine>
+
+@{
+    ViewBag.Title = "Medicines";
+}
+
+
+<br />
+<center>
+    <h2>Medicines </h2>
+
+</center>
+<p>
+    @Html.ActionLink("Create New", "Create", null, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+</p>
+
+
+
+@using (Html.BeginForm())
+{
+
+    <div class="col-md-12"><br /></div>
+
+
+    <form class="form-inline my-2 my-lg-0">
+
+        <div class="col-md-3" ; style="margin-left: -15px">
+            <input class="form-control mr-sm-2 " placeholder="Traži" type="text" name="searchString" />
+        </div>
+
+        <br />
+        <div class="col-md-2" style="color:rgb(0,0,0);font-size:16px; margin-left: -15px">
+            Group: @Html.DropDownList("g", "All")
+        </div>
+
+        <div class="col-md-2" style="color:rgb(0,0,0);font-size:16px; margin-left: -15px">
+            Factory: @Html.DropDownList("f", "All")
+        </div>
+        <br />
+
+        <div class="col-md-5" style="color:rgb(0,0,0);font-size:16px; margin-left: -15px">
+            <button class="btn btn-primary my-sm-0 col-md-3 align-items-md-center" type="submit" value="Traži"> Search </button>
+        </div>
+    </form>
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineFactory.MedicineFactoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineGroup.MedicineGroupName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberAvailable)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineFactory.MedicineFactoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineGroup.MedicineGroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberAvailable)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MedicineID }, htmlAttributes: new { @class = "btn btn-primary btn-large" })
+                @Html.ActionLink("Details", "Details", new { id = item.MedicineID }, htmlAttributes: new { @class = "btn btn-info btn-large" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.MedicineID }, htmlAttributes: new { @class = "btn btn-warning btn-large" })
+                @Html.ActionLink("Prescriptions", "PrescriptionPatient", new { id = item.MedicineID }, htmlAttributes: new { @class = "btn btn-success btn-large" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+<center>
+    <p>
+        @Html.ActionLink("Medicines groups", "Index", "MedicineGroups", null, htmlAttributes: new { @class = "btn btn-success btn-large" })
+        @Html.ActionLink("Medicines Factories", "Index", "MedicineFactories", null, htmlAttributes: new { @class = "btn btn-success btn-large" })
+    </p>
+</center>

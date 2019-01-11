@@ -1,0 +1,98 @@
+﻿@model IEnumerable<PharmacySystem.Models.Prescription>
+
+@{
+
+    ViewBag.Title = "Prescriptions of the medicine";
+    int c = 0;
+    int idd = 0;
+}
+<br />
+<h2>Prescription to patient</h2>
+
+<br />
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.medicine.MedicineName)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.medicine.MedicineGroup.MedicineGroupName)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.medicine.MedicineFactory.MedicineFactoryName)
+        </td>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.medicine.MedicineName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.medicine.MedicineGroup.MedicineGroupName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.medicine.MedicineFactory.MedicineFactoryName)
+            </td>
+
+            </tr>
+
+        break;
+    }
+
+</table>
+
+<table class="table">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.patient.InsuranceNumber)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.patient.PatientName)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.patient.PatientSurname)
+        </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+       
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient.InsuranceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient.PatientSurname)
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+<div class="col-md-12" style="padding:10px; border:1px solid black">
+
+
+
+    <div><a href="@Url.Action("ReportClanarineClana", new { id=idd, idF="PDF"})">Get Report PDF</a></div>
+    <div><a href="@Url.Action("ReportClanarineClana", new { id=idd, idF="Word"})">Get Report Word</a></div>
+    <div><a href="@Url.Action("ReportClanarineClana", new { id=idd, idF="Excel"})">Get Report Excel</a></div>
+    <div><a href="@Url.Action("ReportClanarineClana", new { id=idd, idF="Image"})">Get Report Image</a></div>
+</div>
+
+<br />
+<div>
+    @Html.ActionLink("Nazad", "Index")
+</div>
+

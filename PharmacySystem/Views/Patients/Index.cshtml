@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PharmacySystem.Models.Patient>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Patients</h2>
+
+<form class="form-inline my-2 my-lg-0">
+
+    <div class="col-md-3" ; style="margin-left: -15px">
+        <input class="form-control mr-sm-2 " placeholder="Traži" type="text" name="searchString" />
+    </div>
+
+    <div class="col-md-5" style="color:rgb(0,0,0);font-size:16px; margin-left: -15px">
+        <button class="btn btn-primary my-sm-0 col-md-3 align-items-md-center" type="submit" value="Traži"> Search </button>
+    </div>
+</form>
+
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PatientSurname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InsuranceNumber)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientSurname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InsuranceNumber)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PatientID }, htmlAttributes: new { @class = "btn btn-primary btn-large" }) 
+                    @Html.ActionLink("Details", "Details", new { id = item.PatientID }, htmlAttributes: new { @class = "btn btn-info btn-large" }) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PatientID }, htmlAttributes: new { @class = "btn btn-warning btn-large" })
+                    @Html.ActionLink("Prescriptions", "PrescriptionsToPatient", new { id = item.PatientID }, htmlAttributes: new { @class = "btn btn-success btn-large" })
+
+                </td>
+            </tr>
+        }
+
+    </table>
